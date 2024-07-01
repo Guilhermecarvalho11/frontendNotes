@@ -1,14 +1,12 @@
-import './styles.css';
+import  {Container} from './styles.js';
 export function Details() {
 
   return(
     <>
-    <body>
-    <h1>Hello World</h1>
-    </body>
-
+      <Container>
+      <h1>Hello World</h1>
+      </Container>
     </>
   ) 
-
 }
 
