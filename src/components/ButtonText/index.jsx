@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 export function ButtonText({ title, isActive = false, ...rest }) {
   return (
-    <Container $isactive={isActive.toString()} type="button" {...rest}>
+    <Container $isactive={isActive} type="button" {...rest}>
       {title}
     </Container>
   );
