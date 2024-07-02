@@ -1,5 +1,7 @@
 import { Container, Brand, Menu, Search, Content, NewNote } from "./styled";
-import { Header } from "../../components/Header";
+import { Header } from "../../components/Header/header";
+import { ButtonText } from "../../components/ButtonText";
+
 export function Home() {
   return (
     <Container>
@@ -9,7 +11,17 @@ export function Home() {
 
       <Header />
 
-      <Menu></Menu>
+      <Menu>
+        <li>
+          <ButtonText title="Todos" />
+        </li>
+        <li>
+          <ButtonText title="React" />
+        </li>
+        <li>
+          <ButtonText title="NodeJs" isActive />
+        </li>
+      </Menu>
 
       <Search></Search>
 

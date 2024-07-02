@@ -1,5 +1,6 @@
 import { Container, Profile, Logout } from "./styled";
 import { RiShutDownLine } from "react-icons/ri";
+
 export function Header() {
   return (
     <Container>
