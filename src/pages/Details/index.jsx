@@ -3,6 +3,7 @@ import { Header } from '../../components/Header/header.jsx';
 import { Button } from '../../components/Button/index.jsx';
 import { Section } from '../../components/Section/index.jsx';
 import { Tag } from '../../components/Tag/index.jsx';
+import { ButtonText } from '../../components/ButtonText/index.jsx';
 
 export function Details() {
 
@@ -10,6 +11,7 @@ export function Details() {
     <>
       <Container>
         <Header />
+        <ButtonText title="Excluir Nota" />
 
         <Section title='links uteis'>
           <Links>
