@@ -1,8 +1,8 @@
 //aqui é quando o usuario não estiver logado
 import { Routes, Route } from "react-router-dom";
 
-import { SignIn } from "../components/Signin";
-import { SignUp } from "../components/SignUp";
+import { SignIn } from "../pages/Signin";
+import { SignUp } from "../pages/SignUp";
 
 export function AuthRoutes() {
   return (
