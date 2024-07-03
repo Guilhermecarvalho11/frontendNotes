@@ -3,6 +3,7 @@ import { Container, Brand, Menu, Search, Content, NewNote } from "./styled";
 import { Header } from "../../components/Header/header";
 import { Input } from "../../components/Input";
 import { ButtonText } from "../../components/ButtonText";
+import { Note } from "../../components/Note";
 
 export function Home() {
   return (
@@ -29,7 +30,17 @@ export function Home() {
         <Input placeholder="Pesquisar pelo Título" icon={FiSearch} />
       </Search>
 
-      <Content></Content>
+      <Content title="React Modal">
+        <Note
+          data={{
+            title: "React",
+            tags: [
+              { id: "1", name: "node" },
+              { id: "2", name: "javascript" },
+            ],
+          }}
+        ></Note>
+      </Content>
 
       <NewNote>
         <FiPlus />

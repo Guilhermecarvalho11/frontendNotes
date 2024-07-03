@@ -1,14 +1,7 @@
+/* eslint-disable react/prop-types */
+
 import { Container } from "./styles";
-import PropTypes from 'prop-types';
 
-export function Tag({title}){
-    return(
-        <Container>
-            {title}
-        </Container>
-    );
+export function Tag({ title, ...rest }) {
+  return <Container {...rest}>{title}</Container>;
 }
-
-Tag.propTypes = {
-    title: PropTypes.string.isRequired, // Define 'title' as a required string prop
-  };

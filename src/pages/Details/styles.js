@@ -12,7 +12,7 @@ export const Container = styled.body`
 
   > main {
     grid-area: content;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding: 64px 0;
   }
 `;
