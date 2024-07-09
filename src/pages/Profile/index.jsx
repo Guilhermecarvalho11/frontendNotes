@@ -3,10 +3,30 @@ import { Link } from "react-router-dom";
 
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
+import { useAuth } from "../../hooks/auth";
 
 import { Container, Form, Avatar } from "./styles";
+import { useState } from "react";
 
 export function Profile() {
+  const { user, updateProfile } = useAuth();
+  const [name, setName] = useState(user.name);
+  const [email, setEmail] = useState(user.email);
+  const [passwordOld, setPasswordOld] = useState();
+  const [password, setPassword] = useState();
+
+  async function handleUptade() {
+    // atualizar info do usuario
+    const user = {
+      name,
+      email,
+      password: password,
+      old_password: passwordOld,
+    };
+
+    await updateProfile({ user });
+  }
+
   return (
     <Container>
       <header>
@@ -27,16 +47,34 @@ export function Profile() {
             <input id="avatar" type="file" />
           </label>
         </Avatar>
+        <Input
+          placeholder="Nome"
+          type="text"
+          icon={FiUser}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
 
-        <Input placeholder="Nome" type="text" icon={FiUser} />
-
-        <Input placeholder="E-mail" type="text" icon={FiMail} />
-
-        <Input placeholder="Senha atual" type="password" icon={FiLock} />
-
-        <Input placeholder="Nova atual" type="password" icon={FiLock} />
-
-        <Button title="Salvar" />
+        <Input
+          placeholder="E-mail"
+          type="text"
+          icon={FiMail}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <Input
+          placeholder="Senha atual"
+          type="password"
+          icon={FiLock}
+          onChange={(e) => setPasswordOld(e.target.value)}
+        />
+        <Input
+          placeholder="Nova senha"
+          type="password"
+          icon={FiLock}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <Button onClick={handleUptade} title="Salvar" />
       </Form>
     </Container>
   );
