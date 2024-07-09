@@ -27,6 +27,14 @@ function AuthProvider({ children /*todas as rotas da aplicação*/ }) {
     }
   }
 
+  function signOut() {
+    // remover usuario do localStorage
+    const token = localStorage.removeItem("@rocketnotes:token");
+    const user = localStorage.removeItem("@rocketnotes:user");
+
+    setData({});
+  }
+
   useEffect(() => {
     const token = localStorage.getItem("@rocketnotes:token");
     const user = localStorage.getItem("@rocketnotes:user");
@@ -42,7 +50,7 @@ function AuthProvider({ children /*todas as rotas da aplicação*/ }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ singIn, user: data.user }}>
+    <AuthContext.Provider value={{ singIn, user: data.user, signOut }}>
       {children}
     </AuthContext.Provider>
   );
