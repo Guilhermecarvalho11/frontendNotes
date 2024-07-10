@@ -36,9 +36,17 @@ function AuthProvider({ children /*todas as rotas da aplicação*/ }) {
     setData({});
   }
 
-  async function updateProfile({ user }) {
+  async function updateProfile({ user, avatarFile }) {
     try {
-      await api.put("/users", user); //
+      if (avatarFile) {
+        const fileUploadForm = new FormData();
+        fileUploadForm.append("avatar", avatarFile);
+
+        const responde = await api.patch("/users/avatar", fileUploadForm);
+        user.avatar = responde.data.avatar;
+      }
+
+      await api.put("/users", user);
       localStorage.setItem("@rocketnotes:user", JSON.stringify(user));
       setData({ user, token: data.token });
       alert("perfil atualizado");
@@ -47,6 +55,7 @@ function AuthProvider({ children /*todas as rotas da aplicação*/ }) {
         alert(error.response.data.message);
       } else {
         alert("não foi possivel atualizar o perfil");
+        console.log(error.response.data.message);
       }
     }
   }
