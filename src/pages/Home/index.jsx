@@ -8,22 +8,31 @@ import { Input } from "../../components/Input";
 import { ButtonText } from "../../components/ButtonText";
 import { Note } from "../../components/Note";
 import { api } from "../../services/api";
+import { useNavigate } from "react-router-dom";
 
 export function Home() {
   const [search, setSearch] = useState("");
   const [tags, setTags] = useState([]);
   const [tagsSelected, setTagSelected] = useState([]);
   const [notes, setNotes] = useState([]);
+  const navigate = useNavigate();
 
   function handleTagSelected(tagName) {
-    const alreadySelected = tagsSelected.includes(tagName);
-    console.log(alreadySelected);
+    if (tagName === "all") {
+      return setTagSelected([]);
+    }
+    const alreadySelected = tagsSelected.includes(tagName); //verifica se um elemento específico está presente no array(true ou false).
+
     if (alreadySelected) {
       const filteredTags = tagsSelected.filter((tag) => tag !== tagName);
       setTagSelected(filteredTags);
     } else {
       setTagSelected((prevState) => [...prevState, tagName]);
     }
+  }
+
+  function handleDetails(id) {
+    navigate(`/details/${id}`);
   }
 
   useEffect(() => {
@@ -58,7 +67,7 @@ export function Home() {
       <Menu>
         <li>
           <ButtonText
-            title="Todos"
+            title="Todas as Tags"
             onClick={() => handleTagSelected("all")}
             $isActive={tagsSelected.length === 0}
           />
@@ -86,7 +95,11 @@ export function Home() {
       <Content>
         <Section title="Minhas Notas">
           {notes.map((note) => (
-            <Note key={String(note.id)} data={note} />
+            <Note
+              key={String(note.id)}
+              data={note}
+              onClick={() => handleDetails(note.id)}
+            />
           ))}
         </Section>
       </Content>
