@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { FiArrowLeft, FiUser, FiMail, FiLock, FiCamera } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { api } from "../../services/api";
 import { Input } from "../../components/Input";
@@ -11,6 +11,7 @@ import { Container, Form, Avatar } from "./styles";
 import { useState } from "react";
 
 export function Profile() {
+  const navigate = useNavigate();
   const { user, updateProfile } = useAuth();
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
@@ -33,6 +34,7 @@ export function Profile() {
     };
 
     await updateProfile({ user: userUpdate, avatarFile });
+    navigate("/");
   }
 
   function handleChangeAvatar(event) {
