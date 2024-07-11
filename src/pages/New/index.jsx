@@ -68,7 +68,7 @@ export function New() {
     });
 
     alert("Nota criadas com sucesso!");
-    navigate("/");
+    navigate(-1);
   }
 
   return (
