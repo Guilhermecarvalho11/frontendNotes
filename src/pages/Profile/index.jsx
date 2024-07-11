@@ -26,12 +26,14 @@ export function Profile() {
 
   async function handleUptade() {
     // atualizar info do usuario
-    const userUpdate = {
+    const update = {
       name,
       email,
       password: password,
       old_password: passwordOld,
     };
+
+    const userUpdate = Object.assign(user, update); // corrigindo bug de update do user e a foto apagada
 
     await updateProfile({ user: userUpdate, avatarFile });
     navigate("/");
