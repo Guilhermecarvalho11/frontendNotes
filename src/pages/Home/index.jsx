@@ -50,7 +50,6 @@ export function Home() {
         `/notes?title=${search}&tags=${tagsSelected}`
       );
       setNotes(response.data);
-      console.log("res.data: ", response.data);
     }
 
     fetchNotes();
