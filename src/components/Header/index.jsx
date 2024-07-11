@@ -10,6 +10,7 @@ export function Header() {
   const navigate = useNavigate();
 
   function handleSingOut() {
+    // deslogando usuario de qual quer página
     navigate("/");
     signOut();
   }
