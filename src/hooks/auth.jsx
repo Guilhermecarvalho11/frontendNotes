@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useState, useEffect } from "react";
@@ -12,18 +13,24 @@ function AuthProvider({ children /*todas as rotas da aplicação*/ }) {
     try {
       const response = await api.post("/sessions", { email, password }); //mandando email e senha para o backend
       const { user, token } = response.data;
-
+      console.log("Login bem-sucedido:", response);
       localStorage.setItem("@rocketnotes:user", JSON.stringify(user));
       localStorage.setItem("@rocketnotes:token", token);
 
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`; //inserindo um token de autorização em todas as REQ
 
-      setData({ user, token });
+      setData({ token, user });
     } catch (error) {
       if (error.response) {
         alert(error.response.data.message);
+        console.error("Erro na resposta do servidor:", error.response.status);
+        console.error("Dados do erro:", error.response.data);
+      } else if (error.request) {
+        // A solicitação foi feita, mas nenhuma resposta foi recebida
+        console.error("Nenhuma resposta recebida:", error.request);
       } else {
-        alert("não foi possivel entrar");
+        // Algo aconteceu na configuração da solicitação que desencadeou um erro
+        console.error("Erro ao configurar a solicitação:", error.message);
       }
     }
   }

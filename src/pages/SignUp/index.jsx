@@ -30,6 +30,7 @@ export function SignUp() {
           alert(error.res.data.message);
         } else {
           alert("não foi possivel cadastrar");
+          console.log(error.res.data.message);
         }
       });
   }
